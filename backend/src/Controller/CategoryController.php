@@ -22,14 +22,14 @@ class CategoryController extends AbstractController
 	): JsonResponse
 	{
 			$category = $this->categoryService->create($categoryDto);
-			return $this->json($category, Response::HTTP_CREATED);
+			return $this->json($category, Response::HTTP_CREATED, [], ['groups' => 'category.read']);
 	}
 
 	#[Route('/category', name: 'api.category.find.all', methods: ['GET'])]
 	public function findAll(): JsonResponse
 	{
 		$categories = $this->categoryService->findAll();
-		return $this->json($categories);
+		return $this->json($categories, Response::HTTP_OK, [], ['groups' => 'category.read']);
 	}
 
 	#[Route('/category/{id}', name: 'api.category.find.one', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -41,7 +41,7 @@ class CategoryController extends AbstractController
 				'message' => "La catégorie d'id $id n'existe pas."
 			], Response::HTTP_NOT_FOUND);
 		}
-		return $this->json($category);
+		return $this->json($category, Response::HTTP_OK, [], ['groups' => 'category.read']);
 	}
 
 	#[Route('/category/{id}', name: 'api.category.update', requirements: ['id' => '\d+'], methods: ['PUT'], format: 'json')]
@@ -58,7 +58,7 @@ class CategoryController extends AbstractController
 		}
 		$category->setName($categoryDto->name);
 		$this->categoryService->update($category, $categoryDto);
-		return $this->json($category);
+		return $this->json($category, Response::HTTP_OK, [], ['groups' => 'category.read']);
 	}
 
 	#[Route('/category/{id}', name: 'api.category.delete', requirements: ['id' => '\d+'], methods: ['DELETE'], format: 'json')]

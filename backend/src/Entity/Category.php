@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[UniqueEntity(fields: ['name'], message: "Ce nom de catégorie existe déjà.")]
@@ -13,15 +16,18 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+		#[Groups(['category.read', 'product.read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100, unique: true)]
+		#[Groups(['category.read', 'product.read'])]
     private ?string $name = null;
 
     /**
      * @var Collection<int, Product>
      */
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'category')]
+		#[Groups(['category.read'])]
     private Collection $products;
 
     public function __construct()
