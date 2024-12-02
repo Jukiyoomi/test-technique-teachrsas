@@ -25,7 +25,7 @@ class CategoryRepository extends ServiceEntityRepository
 			return $category;
 		}
 
-		public function update()
+		public function update(): void
 		{
 			$em = $this->getEntityManager();
 			$em->flush();
