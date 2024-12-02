@@ -5,6 +5,8 @@ namespace App\Tests\Service;
 use App\DTOs\CategoryDto;
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use Faker\Factory;
+use Faker\Generator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -25,16 +27,17 @@ class CategoryServiceTest extends KernelTestCase
 		return static::getContainer()->get('App\Service\CategoryService');
 	}
 
-	private function getRandomName(): string
+	private function getFaker(): Generator
 	{
-		return "Test " . rand();
+		return Factory::create();
 	}
 
 	public function testCreateCategory(): void
 	{
 		$fakeRepository = $this->mockRepository();
 		$fakeRepository->method('create')->willReturn(new Category());
-		$name = $this->getRandomName();
+		$faker = $this->getFaker();
+		$name = $faker->word();
 		$categoryDto = new CategoryDto($name);
 		$categoryService = $this->getService();
 		$category = $categoryService->create($categoryDto);
@@ -54,7 +57,7 @@ class CategoryServiceTest extends KernelTestCase
 	public function testGetCategory(): void
 	{
 		$fakeRepository = $this->mockRepository();
-		$fakeRepository->method('findOneById')->willReturn(new Category());
+		$fakeRepository->method('findOneBy')->willReturn(new Category());
 		$categoryService = $this->getService();
 		$category = $categoryService->findOneById(1);
 		$this->assertInstanceOf(Category::class, $category);
@@ -63,8 +66,8 @@ class CategoryServiceTest extends KernelTestCase
 	public function testUpdateCategory(): void
 	{
 		$fakeRepository = $this->mockRepository();
-		$fakeRepository->method('update')->willReturn(new Category());
-		$name = $this->getRandomName();
+		$faker = $this->getFaker();
+		$name = $faker->word();
 		$categoryDto = new CategoryDto($name);
 		$category = new Category();
 		$categoryService = $this->getService();
