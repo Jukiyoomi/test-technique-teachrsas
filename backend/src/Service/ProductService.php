@@ -43,13 +43,14 @@ class ProductService
 		return $this->productRepository->findOneBy(['id' => $id]);
 	}
 
-	public function update(Product $product, ProductDto $productDto): void
+	public function update(Product $product, ProductDto $productDto): Product
 	{
 		$product->setName($productDto->name);
 		$product->setDescription($productDto->description);
 		$product->setPrice($productDto->price);
 		$product->setCategory($this->getCategory($productDto->categoryId));
 		$this->productRepository->update();
+		return $product;
 	}
 
 	public function delete(int $id): void
