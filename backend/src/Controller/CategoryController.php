@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
 	#[Route('/category/{id}', name: 'api.category.find.one', requirements: ['id' => '\d+'], methods: ['GET'])]
 	public function findOne(int $id): JsonResponse
 	{
-		$category = $this->categoryService->findOneBy($id);
+		$category = $this->categoryService->findOneById($id);
 		if (!$category) {
 			return $this->json([
 				'message' => "La catégorie d'id $id n'existe pas."
@@ -50,7 +50,7 @@ class CategoryController extends AbstractController
 		#[MapRequestPayload] CategoryDto $categoryDto
 	): JsonResponse
 	{
-		$category = $this->categoryService->findOneBy($id);
+		$category = $this->categoryService->findOneById($id);
 		if (!$category) {
 			return $this->json([
 				'message' => "La catégorie d'id $id n'existe pas."
@@ -64,7 +64,7 @@ class CategoryController extends AbstractController
 	#[Route('/category/{id}', name: 'api.category.delete', requirements: ['id' => '\d+'], methods: ['DELETE'], format: 'json')]
 	public function delete(int $id): JsonResponse
 	{
-		$category = $this->categoryService->findOneBy($id);
+		$category = $this->categoryService->findOneById($id);
 		$this->categoryService->delete($category);
 		return $this->json([], Response::HTTP_NO_CONTENT);
 	}

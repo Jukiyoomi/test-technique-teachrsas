@@ -28,7 +28,7 @@ class CategoryService
 		return $this->categoryRepository->findAll();
 	}
 
-	public function findOneBy(int $id): ?Category
+	public function findOneById(int $id): ?Category
 	{
 		return $this->categoryRepository->findOneBy(['id' => $id]);
 	}
