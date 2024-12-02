@@ -53,9 +53,11 @@ class ProductService
 		return $product;
 	}
 
-	public function delete(int $id): void
+	public function delete(?Product $product): void
 	{
-		$product = $this->findOneById($id);
+		if (!$product) { // without this check, it might throw an error, no need to receive an error for this operation
+			return;
+		}
 		$this->productRepository->delete($product);
 	}
 }
