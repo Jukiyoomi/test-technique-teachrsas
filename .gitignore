@@ -1,0 +1,6 @@
+.zed
+.vscode
+.idea
+
+.env.test.docker
+.env.docker
