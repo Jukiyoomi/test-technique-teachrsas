@@ -8,7 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '#root': path.resolve(__dirname, './src'),
-      '#styled-system': path.resolve(__dirname, './styled-system'),
     }
   }
 })

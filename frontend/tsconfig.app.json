@@ -23,8 +23,7 @@
     "noUncheckedSideEffectImports": true,
     "paths": {
       "#root/*": ["./src/*"],
-      "#styled-system/*": ["./styled-system/*"]
     }
   },
-  "include": ["src", "styled-system"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
 }
