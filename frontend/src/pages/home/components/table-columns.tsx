@@ -11,6 +11,7 @@ import {
 	DropdownMenuTrigger
 } from "#root/components/ui/dropdown-menu";
 import {toast} from "sonner";
+import { formatCurrency } from "#root/services/format-currency";
 
 export const columns: ColumnDef<Product>[] = [
 	{
@@ -32,10 +33,7 @@ export const columns: ColumnDef<Product>[] = [
 		header: () => <LargeText>Prix</LargeText>,
 		cell: ({ row }) => {
 			const amount = parseFloat(row.getValue("price"))
-			return new Intl.NumberFormat("fr-FR", {
-				style: "currency",
-				currency: "EUR",
-			}).format(amount)
+			return formatCurrency(amount)
 		},
 	},
 	{
