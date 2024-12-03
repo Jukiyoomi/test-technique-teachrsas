@@ -1,0 +1,13 @@
+:root {
+	--dark-orange: rgb(83, 62, 45);
+	--mid-orange: rgb(162, 112, 53);
+	--light-orange: rgb(249, 199, 132);
+	--full-white: rgb(255, 255, 255);
+	--white: rgb(231, 231, 231);
+	--black: rgb(28 25 23);
+	--blacker: rgb(12 10 9);
+	--blue: rgb(46, 56, 94);
+
+	--destructive: rgb(239 68 68);
+	--destructive-dark: rgb(127, 29, 29);
+}

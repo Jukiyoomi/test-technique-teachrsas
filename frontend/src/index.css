@@ -1,0 +1,72 @@
+@import "colors.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+
+  	/** Light Theme */
+    --background: var(--white);
+    --foreground: var(--black);
+    --card: var(--full-white);
+    --card-foreground: var(--blacker);
+    --popover: var(--full-white);
+    --popover-foreground: var(--blue);
+    --primary: var(--dark-orange);
+    --primary-foreground: var(--white);
+    --secondary: var(--light-orange);
+    --secondary-foreground: var(--black);
+    --muted: rgb(245, 245, 244);
+    --muted-foreground: rgb(120, 113, 108);
+    --accent: rgb(245, 245, 244);
+    --accent-foreground: var(--black);
+    --destructive: var(--destructive);
+    --destructive-foreground: var(--white);
+    --border: rgb(226, 232, 240);
+    --input: rgb(226, 232, 240);
+    --ring: var(--blacker);
+    --chart-1: rgb(231, 110, 80);
+    --chart-2: rgb(42, 157, 144);
+    --chart-3: rgb(39, 71, 84);
+    --chart-4: rgb(232, 196, 104);
+    --chart-5: rgb(244, 164, 98);
+    --radius: 0.5rem
+  }
+	/** Dark Theme */
+  .dark {
+    --background: var(--black);
+    --foreground: var(--white);
+    --card: var(--blacker);
+    --card-foreground: var(--white);
+    --popover: var(--blacker);
+    --popover-foreground: var(--white);
+    --primary: var(--white);
+    --primary-foreground: var(--black);
+    --secondary: rgb(41, 37, 36);
+    --secondary-foreground: var(--white);
+    --muted: rgb(41, 37, 36);
+    --muted-foreground: rgb(168, 162, 158);
+    --accent: rgb(41, 37, 36);
+    --accent-foreground: var(--white);
+    --destructive: var(--destructive-dark);
+    --destructive-foreground: var(--white);
+    --border: rgb(41, 37, 36);
+    --input: rgb(41, 37, 36);
+    --ring: var(--white);
+    --chart-1: rgb(38, 98, 217);
+    --chart-2: rgb(46, 184, 138);
+    --chart-3: rgb(232, 140, 48);
+    --chart-4: rgb(175, 87, 219);
+    --chart-5: rgb(226, 54, 112)
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
