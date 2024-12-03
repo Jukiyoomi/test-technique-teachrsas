@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import {cn} from "#root/lib/utils.ts";
 
 export function H1({ children }: PropsWithChildren) {
 	return (
@@ -8,9 +9,12 @@ export function H1({ children }: PropsWithChildren) {
 	);
 }
 
-export function H2({ children }: PropsWithChildren) {
+export function H2({ children, centered = false }: PropsWithChildren<{ centered?: boolean }>) {
 	return (
-		<h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+		<h2 className={cn({
+			"scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0": true,
+			"text-center": centered
+		})}>
 			{children}
 		</h2>
 	);
