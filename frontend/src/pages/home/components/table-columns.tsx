@@ -1,6 +1,6 @@
 import {ColumnDef} from "@tanstack/react-table"
 import {Product} from "#root/services/schema/product";
-import {LargeText} from "#root/components/ui/typography";
+import {LargeText, Paragraph} from "#root/components/ui/typography";
 
 export const columns: ColumnDef<Product>[] = [
 	{
@@ -13,7 +13,8 @@ export const columns: ColumnDef<Product>[] = [
 		cell: ({ row }) => {
 			const maxLength = 20;
 			const description = String(row.getValue("description"));
-			return description.length > maxLength ? description.slice(0, maxLength) + "..." : description
+			if(description.length > maxLength) return <abbr title={description}>{description.slice(0, maxLength)}...</abbr>
+			return <Paragraph>{description}</Paragraph>
 		}
 	},
 	{
