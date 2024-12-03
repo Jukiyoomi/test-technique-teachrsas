@@ -1,7 +1,8 @@
 import {createRootRouteWithContext, createRoute, createRouter, Outlet} from "@tanstack/react-router";
 import {lazy, Suspense} from "react";
 import { Root } from "#root/root";
-import App from "#root/App.tsx";
+import {Container} from "#root/components/layouts/container.tsx";
+import { Home } from "#root/pages/home";
 
 const TanStackRouterDevtools = import.meta.env.DEV
 	? lazy(() =>
@@ -28,15 +29,27 @@ const rootRoute = createRootRouteWithContext()({
 });
 
 // Routes defs
+const containerRoute = createRoute({
+	id: "container",
+	getParentRoute: () => rootRoute,
+	component: () => (
+		<Container>
+			<Outlet />
+		</Container>
+	),
+})
+
 const baseRoute = createRoute({
 	path: "/",
-	getParentRoute: () => rootRoute,
-	component: App,
+	getParentRoute: () => containerRoute,
+	component: () => <Home />,
 })
 
 // Route Tree
 const routeTree = rootRoute.addChildren([
-	baseRoute
+	containerRoute.addChildren([
+		baseRoute,
+	])
 ]);
 
 // Final router and type declaration (because type safety is life)
