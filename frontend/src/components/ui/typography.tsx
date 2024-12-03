@@ -16,7 +16,13 @@ export function Paragraph({ children }: PropsWithChildren) {
 	);
 }
 
-export function Small({ children }: PropsWithChildren) {
+export function LargeText({ children }: PropsWithChildren) {
+	return (
+		<p className="text-lg font-semibold">{children}</p>
+	)
+}
+
+export function Small({children}: PropsWithChildren) {
 	return (
 		<small className="text-sm font-medium leading-none">{children}</small>
 	);
