@@ -2,6 +2,7 @@ import {createRootRouteWithContext, createRoute, createRouter, Outlet} from "@ta
 import {lazy, Suspense} from "react";
 import { Root } from "#root/root";
 import {Container} from "#root/components/layouts/container.tsx";
+import { Home } from "#root/pages/home";
 
 const TanStackRouterDevtools = import.meta.env.DEV
 	? lazy(() =>
@@ -40,8 +41,8 @@ const containerRoute = createRoute({
 
 const baseRoute = createRoute({
 	path: "/",
-	getParentRoute: () => rootRoute,
-	component: App,
+	getParentRoute: () => containerRoute,
+	component: () => <Home />,
 })
 
 // Route Tree
