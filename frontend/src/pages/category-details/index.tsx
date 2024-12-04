@@ -8,15 +8,6 @@ import {toast} from "sonner";
 export function CategoryDetails() {
 	const route = getRouteApi('/container/category/$categoryId')
 	const data = route.useLoaderData()
-	const [deleteCategory, {isLoading}] = useDeleteCategoryMutation()
-	const navigate = useNavigate()
-
-	const onDelete = async () => {
-		deleteCategory(data.id)
-			.unwrap()
-			.then(() => navigate({ to: "/" }))
-			.catch(() => toast.error("Une erreur s'est produite lors de la suppression de la catégorie. Veuillez réessayer."))
-	}
 
 	return (
 		<div>
