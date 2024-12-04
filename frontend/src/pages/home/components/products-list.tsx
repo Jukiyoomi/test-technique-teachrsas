@@ -31,7 +31,7 @@ type Props = {
 export function ProductsList({ products }: Props) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [pagination, setPagination] = useState<PaginationState>({
-		pageSize: 1,
+		pageSize: 5,
 		pageIndex: 0,
 	})
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
