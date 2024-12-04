@@ -21,6 +21,11 @@ class ProductController extends AbstractController
 		#[MapRequestPayload] ProductDto $productDto
 	): JsonResponse
 	{
+		if (is_null($productDto->categoryId)) {
+			return $this->json([
+				'message' => 'Le nom de la catégorie est obligatoire.'
+			], Response::HTTP_UNPROCESSABLE_ENTITY);
+		}
 		$product = $this->productService->create($productDto);
 		return $this->json($product, Response::HTTP_CREATED, [], ['groups' => 'product.read']);
 	}

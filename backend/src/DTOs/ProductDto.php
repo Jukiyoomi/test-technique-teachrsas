@@ -28,9 +28,6 @@ class ProductDto
 		)]
 		public readonly float $price,
 
-		#[Assert\NotBlank(
-			message: "La catégorie est obligatoire."
-		)]
-		public readonly int $categoryId
+		public readonly ?int $categoryId = null
 	){}
 }

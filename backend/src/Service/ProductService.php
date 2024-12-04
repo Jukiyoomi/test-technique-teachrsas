@@ -48,7 +48,9 @@ class ProductService
 		$product->setName($productDto->name);
 		$product->setDescription($productDto->description);
 		$product->setPrice($productDto->price);
-		$product->setCategory($this->getCategory($productDto->categoryId));
+		if ($productDto->categoryId) {
+			$product->setCategory($this->getCategory($productDto->categoryId));
+		}
 		$this->productRepository->update();
 		return $product;
 	}
