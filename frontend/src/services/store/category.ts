@@ -16,7 +16,15 @@ export const categoryApi = createApi({
 			transformResponse: (response: Category) => getOneCategorySchema.parse(response),
 			providesTags: ["category"],
 		}),
+		deleteCategory: build.mutation<void, number>({
+			query: (id) => ({
+				url: `/${id}`,
+				method: "DELETE",
+			}),
+
+			invalidatesTags: ["category"],
+		})
 	}),
 })
 
-export const { useGetAllCategoriesQuery, useGetOneCategoryQuery } = categoryApi;
+export const { useGetAllCategoriesQuery, useGetOneCategoryQuery, useDeleteCategoryMutation } = categoryApi;
