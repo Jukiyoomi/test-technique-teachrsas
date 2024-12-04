@@ -31,6 +31,6 @@ export function PasswordField(props: TextFieldBaseProps) {
 	return <TextField {...props} type="password" />;
 }
 
-export function TextNumberField(props: TextFieldBaseProps) {
+export const TextNumberField = forwardRef<unknown, TextFieldBaseProps>((props, _ref) => {
 	return <TextField {...props} type="number" />;
-}
+})
