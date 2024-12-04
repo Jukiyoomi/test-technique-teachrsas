@@ -30,8 +30,16 @@ export const categoryApi = createApi({
 				body: {name},
 			}),
 			invalidatesTags: ["category"],
+		}),
+		createCategory: build.mutation<Category, { name: string }>({
+			query: ({name}) => ({
+				url: "",
+				method: "POST",
+				body: {name},
+			}),
+			invalidatesTags: ["category"],
 		})
 	}),
 })
 
-export const { useGetAllCategoriesQuery, useGetOneCategoryQuery, useDeleteCategoryMutation, useUpdateCategoryMutation } = categoryApi;
+export const { useGetAllCategoriesQuery, useDeleteCategoryMutation, useUpdateCategoryMutation, useCreateCategoryMutation } = categoryApi;

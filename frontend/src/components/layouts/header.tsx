@@ -20,37 +20,56 @@ export const Header = () => {
 				<H1>Proproducts</H1>
 			</Link>
 
-			{
-				isLoading ? (
-					<Paragraph unspaced>Chargement des catégories...</Paragraph>
-				) : (
-					<NavigationMenu>
-						<NavigationMenuList>
+			<NavigationMenu>
+				<NavigationMenuList className="flex items-center gap-4">
+					{
+						isLoading ? (
+							<Paragraph unspaced>Chargement des catégories...</Paragraph>
+						) : (
 							<NavigationMenuItem>
 								<NavigationMenuTrigger>Nos Catégories</NavigationMenuTrigger>
 								<NavigationMenuContent>
 									{
 										data ? (
-												data.map((category) => (
-													<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]" key={category.id}>
-														<li className="row-span-3">
-															<NavigationMenuLink asChild>
-																<Link to="/category/$categoryId" params={{categoryId: category.id.toString()}}>
+											<ul className="flex flex-col p-4 w-[200px]">
+												{data.map((category) => (
+														<li className="w-full" key={category.id}>
+															<NavigationMenuLink>
+																<Link
+																	to="/category/$categoryId"
+																	params={{categoryId: category.id.toString()}}
+																	className="w-full block py-1 px-3 rounded hover:bg-primary hover:text-background transition-colors"
+																>
 																	{category.name}
 																</Link>
 															</NavigationMenuLink>
 														</li>
-													</ul>
-												))
+													))}
+											</ul>
 											) :
 											<Paragraph>Pas de catégories</Paragraph>
 									}
 								</NavigationMenuContent>
 							</NavigationMenuItem>
-						</NavigationMenuList>
-					</NavigationMenu>
-				)
-			}
+						)
+					}
+					<NavigationMenuItem>
+						<NavigationMenuTrigger>Ajouter...</NavigationMenuTrigger>
+						<NavigationMenuContent>
+							<ul className="flex flex-col p-4 w-[200px]">
+								<li className="w-full">
+									<NavigationMenuLink asChild>
+										<Link
+											to="/category/new"
+											className="w-full block py-1 px-3 rounded hover:bg-primary hover:text-background transition-colors"
+										>Une catégorie</Link>
+									</NavigationMenuLink>
+								</li>
+							</ul>
+						</NavigationMenuContent>
+					</NavigationMenuItem>
+				</NavigationMenuList>
+			</NavigationMenu>
 		</header>
 	)
 }

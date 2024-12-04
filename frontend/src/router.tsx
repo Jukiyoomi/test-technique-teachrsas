@@ -12,6 +12,7 @@ import { categoryApi } from "#root/services/store/category";
 import { store } from "#root/services/store";
 import { CategoryDetails } from "#root/pages/category-details";
 import { NotFound } from "#root/pages/not-found";
+import {CategoryNew} from "#root/pages/category-new";
 
 // Get devtools only in developement environment
 const TanStackRouterDevtools = import.meta.env.DEV
@@ -55,6 +56,12 @@ const baseRoute = createRoute({
 	component: () => <Home />,
 })
 
+const createCategoryRoute = createRoute({
+	path: "/category/new",
+	getParentRoute: () => containerRoute,
+	component: () => <CategoryNew />,
+})
+
 const categoryDetailsRoute = createRoute({
 	path: "/category/$categoryId",
 	loader: async ({ params }) => {
@@ -71,7 +78,8 @@ const categoryDetailsRoute = createRoute({
 const routeTree = rootRoute.addChildren([
 	containerRoute.addChildren([
 		baseRoute,
-		categoryDetailsRoute
+		createCategoryRoute,
+		categoryDetailsRoute,
 	])
 ]);
 
