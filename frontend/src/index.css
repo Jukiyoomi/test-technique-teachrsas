@@ -25,7 +25,7 @@
     --destructive: var(--destructive);
     --destructive-foreground: var(--white);
     --border: rgb(226, 232, 240);
-    --input: rgb(226, 232, 240);
+    --input: var(--dark-orange);
     --ring: var(--blacker);
     --chart-1: rgb(231, 110, 80);
     --chart-2: rgb(42, 157, 144);
