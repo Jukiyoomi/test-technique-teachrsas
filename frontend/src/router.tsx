@@ -13,6 +13,7 @@ import { store } from "#root/services/store";
 import { CategoryDetails } from "#root/pages/category-details";
 import { NotFound } from "#root/pages/not-found";
 import {CategoryNew} from "#root/pages/category-new";
+import {ProductNew} from "#root/pages/product-new";
 
 // Get devtools only in developement environment
 const TanStackRouterDevtools = import.meta.env.DEV
@@ -62,6 +63,16 @@ const createCategoryRoute = createRoute({
 	component: () => <CategoryNew />,
 })
 
+const createProductRoute = createRoute({
+	path: "/product/new",
+	loader: async () => { // preload categories here so they are available in select field
+		const { data } = await store.dispatch(categoryApi.endpoints.getAllCategories.initiate());
+		return data;
+	},
+	getParentRoute: () => containerRoute,
+	component: () => <ProductNew />,
+})
+
 const categoryDetailsRoute = createRoute({
 	path: "/category/$categoryId",
 	loader: async ({ params }) => {
@@ -80,6 +91,7 @@ const routeTree = rootRoute.addChildren([
 		baseRoute,
 		createCategoryRoute,
 		categoryDetailsRoute,
+		createProductRoute,
 	])
 ]);
 

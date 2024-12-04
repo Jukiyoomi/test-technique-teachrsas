@@ -11,9 +11,7 @@ import {
 import {useGetAllCategoriesQuery} from "#root/services/store/category.ts";
 
 export const Header = () => {
-		const { data, isLoading } = useGetAllCategoriesQuery();
-		console.log(data);
-
+	const { data, isLoading } = useGetAllCategoriesQuery();
 	return (
 		<header className="flex items-center justify-between p-4 w-full mb-5 shadow">
 			<Link to="/">
@@ -63,6 +61,15 @@ export const Header = () => {
 											to="/category/new"
 											className="w-full block py-1 px-3 rounded hover:bg-primary hover:text-background transition-colors"
 										>Une catégorie</Link>
+									</NavigationMenuLink>
+								</li>
+
+								<li>
+									<NavigationMenuLink asChild>
+										<Link
+											className="w-full block py-1 px-3 rounded hover:bg-primary hover:text-background transition-colors"
+											to="/product/new"
+										>Un produit</Link>
 									</NavigationMenuLink>
 								</li>
 							</ul>
