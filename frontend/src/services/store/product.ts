@@ -16,7 +16,14 @@ export const productApi = createApi({
 			transformResponse: (response: Product) => getOneProductSchema.parse(response),
 			providesTags: ["product"],
 		}),
+		deleteProduct: build.mutation<void, number>({
+			query: (id) => ({
+				url: `/${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["product"],
+		})
 	}),
 })
 
-export const { useGetAllProductsQuery, useGetOneProductQuery, usePrefetch } = productApi;
+export const { useGetAllProductsQuery, useGetOneProductQuery, useDeleteProductMutation } = productApi;
