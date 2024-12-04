@@ -1,4 +1,4 @@
-import {Product} from "#root/services/schema/product";
+import type {Product} from "#root/services/schema/product";
 import {
 	Table,
 	TableBody,
@@ -10,18 +10,25 @@ import {
 	TableRow
 } from "#root/components/ui/table";
 import {LargeText} from "#root/components/ui/typography";
-import {flexRender, getCoreRowModel, useReactTable} from "@tanstack/react-table";
+import {flexRender, getCoreRowModel, getSortedRowModel, SortingState, useReactTable} from "@tanstack/react-table";
 import {columns} from "./table-columns";
+import {useState} from "react";
 
 type Props = {
 	products: Product[];
 }
 
 export function ProductsList({ products }: Props) {
+	const [sorting, setSorting] = useState<SortingState>([])
 	const table = useReactTable({
 		data: products,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
+		onSortingChange: setSorting,
+		getSortedRowModel: getSortedRowModel(),
+		state: {
+			sorting,
+		},
 	})
 
 	return (

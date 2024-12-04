@@ -1,13 +1,26 @@
-import {ColumnDef} from "@tanstack/react-table"
-import {Product} from "#root/services/schema/product";
+import type {ColumnDef, SortDirection} from "@tanstack/react-table"
+import type {Product} from "#root/services/schema/product";
 import {LargeText, Paragraph} from "#root/components/ui/typography";
 import { formatCurrency } from "#root/services/format-currency";
-import {TableRowActions} from "#root/pages/home/components/table-row-actions.tsx";
+import {TableRowActions} from "#root/pages/home/components/table-row-actions";
+import {Button} from "#root/components/ui/button";
+import {ArrowUp, ArrowDown} from "lucide-react";
+
+function getSortIcon(direction: false | SortDirection) {
+	if(direction === "asc") return <ArrowUp />
+	if(direction === "desc") return <ArrowDown />
+	return null
+}
 
 export const columns: ColumnDef<Product>[] = [
 	{
 		accessorKey: "name",
-		header: () => <LargeText>Nom</LargeText>,
+		header: ({ column }) => (
+			<Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+				<LargeText>Nom</LargeText>
+				{getSortIcon(column.getIsSorted())}
+			</Button>
+		),
 	},
 	{
 		accessorKey: "description",
@@ -21,7 +34,12 @@ export const columns: ColumnDef<Product>[] = [
 	},
 	{
 		accessorKey: "price",
-		header: () => <LargeText>Prix</LargeText>,
+		header: ({ column }) => (
+			<Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+				<LargeText>Prix</LargeText>
+				{getSortIcon(column.getIsSorted())}
+			</Button>
+		),
 		cell: ({ row }) => {
 			const amount = parseFloat(row.getValue("price"))
 			return formatCurrency(amount)
