@@ -48,3 +48,15 @@ Créer une application de gestion de produits et de catégories.
 - [x] Recherche des produits
 - [x] Tests unitaires (backend)
 - [ ] Authentification
+
+## Quelques captures d'écran
+Page d'accueil: liste des produits sous forme de teableau, liste des catégories dans le header
+![image](https://github.com/user-attachments/assets/2d7c7bcf-1fb0-4c77-a2bc-0483b797f09d)
+
+Page création d'un produit: préload des catégories pour le formulaire (permet d'éviter d'afficher un loader)
+![image](https://github.com/user-attachments/assets/32182b7d-0b25-4632-8e58-0f7ae645f6bb)
+
+Page détails d'une catégorie: mode lecture pour afficher la liste des produits associés, mode édition pour éditer les données de la catégorie
+![image](https://github.com/user-attachments/assets/044f9734-e236-4711-b677-4cf7e98ad88a)
+
+
