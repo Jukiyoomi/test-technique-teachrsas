@@ -67,7 +67,7 @@ class ProductController extends AbstractController
 				'message' => "Product with id $id not found"
 			], Response::HTTP_NOT_FOUND);
 		}
-		$this->productService->delete($id);
+		$this->productService->delete($product);
 		return $this->json([], Response::HTTP_NO_CONTENT);
 	}
 }
