@@ -36,11 +36,6 @@ const rootRoute = createRootRouteWithContext()({
 			meta: [{ title: "Test Technique" }],
 		};
 	},
-	loader: async () => { //preloading categories so they can be available before rendering the app
-		const { data } = await store.dispatch(categoryApi.endpoints.getAllCategories.initiate());
-		console.log(data);
-		return data;
-	},
 });
 
 // Routes defs
@@ -84,7 +79,7 @@ const routeTree = rootRoute.addChildren([
 export const router = createRouter({
 	routeTree,
 	defaultNotFoundComponent: () => <NotFound />,
-	defaultPreload: "viewport",
+	defaultPreload: "intent",
 	defaultPreloadStaleTime: 1000 * 60 * 60 * 24,
 });
 

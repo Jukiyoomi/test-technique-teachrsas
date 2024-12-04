@@ -1,5 +1,5 @@
 import {H1, Paragraph} from "#root/components/ui/typography";
-import {getRouteApi, Link} from "@tanstack/react-router";
+import {Link} from "@tanstack/react-router";
 import {
 	NavigationMenu,
 	NavigationMenuList,
@@ -8,10 +8,11 @@ import {
 	NavigationMenuItem,
 	NavigationMenuTrigger,
 } from "#root/components/ui/navigation-menu";
+import {useGetAllCategoriesQuery} from "#root/services/store/category.ts";
 
 export const Header = () => {
-	const routeApi = getRouteApi('__root__')
-	const data = routeApi.useLoaderData()
+		const { data, isLoading } = useGetAllCategoriesQuery();
+		console.log(data);
 
 	return (
 		<header className="flex items-center justify-between p-4 w-full mb-5 shadow">
@@ -19,31 +20,37 @@ export const Header = () => {
 				<H1>Proproducts</H1>
 			</Link>
 
-				<NavigationMenu>
-					<NavigationMenuList>
-						<NavigationMenuItem>
-							<NavigationMenuTrigger>Nos Catégories</NavigationMenuTrigger>
-							<NavigationMenuContent>
-								{
-									data ? (
-										data.map((category) => (
-											<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]" key={category.id}>
-												<li className="row-span-3">
-													<NavigationMenuLink asChild>
-														<Link to="/category/$categoryId" params={{categoryId: category.id.toString()}}>
-															{category.name}
-														</Link>
-													</NavigationMenuLink>
-												</li>
-											</ul>
-										))
-									) :
-									<Paragraph>Pas de catégories</Paragraph>
-								}
-							</NavigationMenuContent>
-						</NavigationMenuItem>
-					</NavigationMenuList>
-				</NavigationMenu>
+			{
+				isLoading ? (
+					<Paragraph unspaced>Chargement des catégories...</Paragraph>
+				) : (
+					<NavigationMenu>
+						<NavigationMenuList>
+							<NavigationMenuItem>
+								<NavigationMenuTrigger>Nos Catégories</NavigationMenuTrigger>
+								<NavigationMenuContent>
+									{
+										data ? (
+												data.map((category) => (
+													<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]" key={category.id}>
+														<li className="row-span-3">
+															<NavigationMenuLink asChild>
+																<Link to="/category/$categoryId" params={{categoryId: category.id.toString()}}>
+																	{category.name}
+																</Link>
+															</NavigationMenuLink>
+														</li>
+													</ul>
+												))
+											) :
+											<Paragraph>Pas de catégories</Paragraph>
+									}
+								</NavigationMenuContent>
+							</NavigationMenuItem>
+						</NavigationMenuList>
+					</NavigationMenu>
+				)
+			}
 		</header>
 	)
 }
