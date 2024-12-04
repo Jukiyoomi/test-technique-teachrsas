@@ -20,9 +20,12 @@ export function H2({ children, centered = false }: PropsWithChildren<{ centered?
 	);
 }
 
-export function Paragraph({ children }: PropsWithChildren) {
+export function Paragraph({ children, unspaced = false }: PropsWithChildren<{ unspaced?: boolean }>) {
 	return (
-		<p className="leading-7 [&:not(:first-child)]:mt-6">
+		<p className={cn({
+			"leading-7": true,
+			"[&:not(:first-child)]:mt-6": !unspaced,
+		})}>
 			{children}
 		</p>
 	);

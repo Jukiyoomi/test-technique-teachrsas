@@ -7,6 +7,7 @@ import {
 } from "#root/components/ui/select";
 import type {PaginationState} from "@tanstack/react-table";
 import {Button} from "#root/components/ui/button.tsx";
+import {Paragraph} from "#root/components/ui/typography";
 
 type PaginationPageSizeProps = {
 	pagination: PaginationState;
@@ -37,11 +38,12 @@ type PaginationButtonsProps = {
 	onNextPage: () => void;
 	hasPreviousPage: boolean;
 	hasNextPage: boolean;
+	current: number
 }
 
-export function PaginationButtons({ onPreviousPage, onNextPage, hasPreviousPage, hasNextPage }: PaginationButtonsProps) {
+export function PaginationButtons({ onPreviousPage, onNextPage, hasPreviousPage, hasNextPage, current }: PaginationButtonsProps) {
 	return (
-		<div className="flex items-center justify-end space-x-2 py-4">
+		<div className="flex items-center space-x-2 py-4">
 			<Button
 				variant="outline"
 				size="sm"
@@ -50,6 +52,7 @@ export function PaginationButtons({ onPreviousPage, onNextPage, hasPreviousPage,
 			>
 				Previous
 			</Button>
+			<Paragraph unspaced>Page {current}</Paragraph>
 			<Button
 				variant="outline"
 				size="sm"

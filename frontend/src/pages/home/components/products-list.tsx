@@ -111,6 +111,7 @@ export function ProductsList({ products }: Props) {
 				onNextPage={table.nextPage}
 				hasPreviousPage={table.getCanPreviousPage()}
 				hasNextPage={table.getCanNextPage()}
+				current={pagination.pageIndex + 1}
 			/>
 		</>
 )
