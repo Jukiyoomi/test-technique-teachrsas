@@ -4,13 +4,14 @@
 Créer une application de gestion de produits et de catégories.
 
 ## Stack technique
+- Docker: pour l'isolation des environnements
 - Symfony 7.2
 - PHP 8.2
-- Postgres 16 (via docker)
+- Postgres 16 (via Docker)
 - React 18
-- Redux Toolkit (state management & API calls)
-- Tanstack Router (routing)
-- Typescript
+- Redux Toolkit (state management & API calls): plus simple que Redux
+- Tanstack Router (routing) : routing typesafe
+- Typescript: pour le typage
 
 ## Installation
 1. Cloner le projet
