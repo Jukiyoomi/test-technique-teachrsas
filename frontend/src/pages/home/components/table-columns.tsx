@@ -29,7 +29,7 @@ export const columns: ColumnDef<Product>[] = [
 	},
 	{
 		accessorKey: "category.name",
-		header: () => <LargeText><div className="text-right">Catégorie</div></LargeText>,
+		header: () => <div className="text-right"><LargeText>Catégorie</LargeText></div>,
 		cell: ({ row }) => {
 			const category = String(row.getValue("category_name"))
 			return <div className="text-right">{category}</div>
@@ -37,7 +37,7 @@ export const columns: ColumnDef<Product>[] = [
 	},
 	{
 		id: "actions",
-		header: () => <LargeText><div className="text-right">Actions</div></LargeText>,
+		header: () => <div className="text-right"><LargeText>Actions</LargeText></div>,
 		cell: ({ row }) => {
 			const product = row.original
 
