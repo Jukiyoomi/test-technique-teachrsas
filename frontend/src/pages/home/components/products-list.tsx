@@ -11,16 +11,18 @@ import {
 } from "#root/components/ui/table";
 import {LargeText} from "#root/components/ui/typography";
 import {
+	type ColumnFiltersState,
 	flexRender,
-	getCoreRowModel,
+	getCoreRowModel, getFilteredRowModel,
 	getPaginationRowModel,
 	getSortedRowModel, type PaginationState,
-	SortingState,
+	type SortingState,
 	useReactTable
 } from "@tanstack/react-table";
 import {columns} from "./table-columns";
 import {useState} from "react";
 import {PaginationButtons, PaginationPageSize} from "#root/pages/home/components/pagination.tsx";
+import {SearchBar} from "#root/pages/home/components/search-bar.tsx";
 
 type Props = {
 	products: Product[];
@@ -32,6 +34,7 @@ export function ProductsList({ products }: Props) {
 		pageSize: 1,
 		pageIndex: 0,
 	})
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const table = useReactTable({
 		data: products,
 		columns,
@@ -40,9 +43,12 @@ export function ProductsList({ products }: Props) {
 		getCoreRowModel: getCoreRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
+		onColumnFiltersChange: setColumnFilters,
+		getFilteredRowModel: getFilteredRowModel(),
 		state: {
 			sorting,
-			pagination
+			pagination,
+			columnFilters
 		},
 	})
 
@@ -52,7 +58,13 @@ export function ProductsList({ products }: Props) {
 
 	return (
 		<>
-			<PaginationPageSize pagination={pagination} onClick={(pageSize) => setPagination({ ...pagination, pageSize })} />
+			<div className="flex flex-wrap items-center py-4 gap-3 w-full">
+				<SearchBar
+					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+					onChange={(val) => table.getColumn("name")?.setFilterValue(val)}
+				/>
+				<PaginationPageSize pagination={pagination} onClick={(pageSize) => setPagination({...pagination, pageSize})}/>
+			</div>
 			<Table>
 				<TableCaption>
 					Liste de nos super produits
@@ -114,5 +126,5 @@ export function ProductsList({ products }: Props) {
 				current={pagination.pageIndex + 1}
 			/>
 		</>
-)
+	)
 }
