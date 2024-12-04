@@ -13,17 +13,18 @@ import {Loader2, TrashIcon} from "lucide-react";
 import {useNavigate} from "@tanstack/react-router";
 import {toast} from "sonner";
 import {useDeleteProductMutation} from "#root/services/store/product";
+import {Product} from "#root/services/schema/product";
 
 type Props = {
-	productId: number;
+	product: Product;
 }
 
-export function DeleteProductDialog({ productId }: Props) {
+export function DeleteProductDialog({ product }: Props) {
 	const [deleteProduct, { isLoading }] = useDeleteProductMutation()
 	const navigate = useNavigate()
 
 	const onDelete = async () => {
-		deleteProduct(productId)
+		deleteProduct(product.id)
 			.unwrap()
 			.then(() => toast.success("Le produit a été supprimé !"))
 			.then(() => navigate({ to: "." }))
@@ -47,7 +48,8 @@ export function DeleteProductDialog({ productId }: Props) {
 				<DialogHeader>
 					<DialogTitle>Suppression</DialogTitle>
 					<DialogDescription>
-						Attention, vous êtes sur le point de supprimer ce produit. Cette action est irréversible.
+						Attention, vous êtes sur le point de supprimer le produit {product.name}.
+						Cette action est irréversible.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">

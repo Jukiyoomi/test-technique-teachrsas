@@ -21,7 +21,7 @@ export function TableRowActions({ product }:Props) {
 			>
 				<CopyIcon className="h-4 w-4" />
 			</Button>
-			<DeleteProductDialog productId={product.id} />
+			<DeleteProductDialog product={product} />
 		</div>
 	)
 }
