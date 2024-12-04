@@ -10,13 +10,28 @@ import {
 } from "#root/components/ui/dialog";
 import {Button} from "#root/components/ui/button";
 import {Loader2, TrashIcon} from "lucide-react";
+import {useDeleteCategoryMutation} from "#root/services/store/category.ts";
+import {useNavigate} from "@tanstack/react-router";
+import {toast} from "sonner";
 
 type Props = {
-	onDelete: () => void;
-	isLoading: boolean;
+	categoryId: number;
 }
 
-export function DeleteCategoryDialog({ onDelete, isLoading }: Props) {
+export function DeleteCategoryDialog({ categoryId }: Props) {
+	const [deleteCategory, {isLoading}] = useDeleteCategoryMutation()
+	const navigate = useNavigate()
+
+	const onDelete = async () => {
+		deleteCategory(categoryId)
+			.unwrap()
+			.then(() => {
+				toast.success("La catégorie a été supprimée avec succès.")
+				navigate({ to: "/" })
+			})
+			.catch(() => toast.error("Une erreur s'est produite lors de la suppression de la catégorie. Veuillez réessayer."))
+	}
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>

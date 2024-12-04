@@ -1,7 +1,6 @@
-import {getRouteApi, useNavigate} from "@tanstack/react-router";
-import {H2, Paragraph} from "#root/components/ui/typography";
+import {getRouteApi} from "@tanstack/react-router";
+import {H2} from "#root/components/ui/typography";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "#root/components/ui/tabs";
-import {useDeleteCategoryMutation} from "#root/services/store/category";
 import {CategoryProductsList} from "#root/pages/category-details/category-products-list";
 import {DeleteCategoryDialog} from "#root/pages/category-details/delete-category-dialog";
 import {toast} from "sonner";
@@ -25,8 +24,7 @@ export function CategoryDetails() {
 				<H2 centered>{data.name}</H2>
 				<div>
 					<DeleteCategoryDialog
-						onDelete={onDelete}
-						isLoading={isLoading}
+						categoryId={data.id}
 					/>
 				</div>
 			</div>
