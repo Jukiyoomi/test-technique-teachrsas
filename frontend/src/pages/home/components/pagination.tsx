@@ -19,7 +19,7 @@ export function PaginationPageSize({ pagination, onClick }: PaginationPageSizePr
 		 <Select
 		 	onValueChange={(value) => onClick(Number(value))}
 		 >
-			 <SelectTrigger className="w-[180px]">
+			 <SelectTrigger className="flex-1">
 				 <SelectValue placeholder="Taille de la pagination" />
 			 </SelectTrigger>
 			 <SelectContent>
