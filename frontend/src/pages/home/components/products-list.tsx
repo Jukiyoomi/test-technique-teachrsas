@@ -113,7 +113,7 @@ export function ProductsList({ products }: Props) {
 				</TableBody>
 				<TableFooter>
 					<TableRow>
-						<TableCell colSpan={3}>Nombre de produits</TableCell>
+						<TableCell colSpan={4}>Nombre de produits</TableCell>
 						<TableCell className="text-right">{products.length} produits</TableCell>
 					</TableRow>
 				</TableFooter>
