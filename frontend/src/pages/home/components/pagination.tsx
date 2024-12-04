@@ -50,7 +50,7 @@ export function PaginationButtons({ onPreviousPage, onNextPage, hasPreviousPage,
 				onClick={onPreviousPage}
 				disabled={!hasPreviousPage}
 			>
-				Previous
+				Page précédente
 			</Button>
 			<Paragraph unspaced>Page {current}</Paragraph>
 			<Button
@@ -59,7 +59,7 @@ export function PaginationButtons({ onPreviousPage, onNextPage, hasPreviousPage,
 				onClick={onNextPage}
 				disabled={!hasNextPage}
 			>
-				Next
+				Page suivante
 			</Button>
 		</div>
 	)
