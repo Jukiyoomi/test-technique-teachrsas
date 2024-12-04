@@ -27,9 +27,9 @@ export const Header = () => {
 								{
 									data ? (
 										data.map((category) => (
-											<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+											<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]" key={category.id}>
 												<li className="row-span-3">
-													<NavigationMenuLink key={category.id} asChild>
+													<NavigationMenuLink asChild>
 														<Link to="/category/$categoryId" params={{categoryId: category.id.toString()}}>
 															{category.name}
 														</Link>
