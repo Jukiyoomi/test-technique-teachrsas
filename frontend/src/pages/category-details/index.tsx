@@ -1,5 +1,6 @@
 import {getRouteApi, useNavigate} from "@tanstack/react-router";
-import {H2} from "#root/components/ui/typography";
+import {H2, Paragraph} from "#root/components/ui/typography";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "#root/components/ui/tabs";
 import {useDeleteCategoryMutation} from "#root/services/store/category";
 import {CategoryProductsList} from "#root/pages/category-details/category-products-list";
 import {DeleteCategoryDialog} from "#root/pages/category-details/delete-category-dialog";
@@ -29,7 +30,18 @@ export function CategoryDetails() {
 					/>
 				</div>
 			</div>
-			<CategoryProductsList products={data.products} />
+			<Tabs defaultValue="view" className="flex flex-col items-center">
+				<TabsList className="w-5/6 mx-auto my-10">
+					<TabsTrigger value="view" className="w-1/2">Mode lecture</TabsTrigger>
+					<TabsTrigger value="edit" className="w-1/2">Mode édition</TabsTrigger>
+				</TabsList>
+				<TabsContent value="view" className="w-5/6">
+					<CategoryProductsList products={data.products} />
+				</TabsContent>
+				<TabsContent value="edit" className="w-5/6">
+					<Paragraph>Mode édition. À venir.</Paragraph>
+				</TabsContent>
+			</Tabs>
 		</div>
 	);
 }
