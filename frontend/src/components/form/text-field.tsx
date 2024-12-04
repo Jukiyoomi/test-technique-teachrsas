@@ -3,6 +3,8 @@ import {ComponentProps, forwardRef} from "react";
 import {BaseField, BaseFieldProps} from "#root/components/form/base-field";
 import {useController} from "react-hook-form";
 
+// WARNING: Only use inside forms with react-hook-form. It adds the necessary props to work with it.
+
 export type TextFieldBaseProps = ComponentProps<"input"> & BaseFieldProps;
 
 export const TextField = forwardRef<unknown, TextFieldBaseProps>(({label, helperText, error, ...props}, _ref) => {
