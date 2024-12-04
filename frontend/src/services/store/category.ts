@@ -21,10 +21,17 @@ export const categoryApi = createApi({
 				url: `/${id}`,
 				method: "DELETE",
 			}),
-
+			invalidatesTags: ["category"],
+		}),
+		updateCategory: build.mutation<Category, { id: number, name: string }>({
+			query: ({id, name}) => ({
+				url: `/${id}`,
+				method: "PUT",
+				body: {name},
+			}),
 			invalidatesTags: ["category"],
 		})
 	}),
 })
 
-export const { useGetAllCategoriesQuery, useGetOneCategoryQuery, useDeleteCategoryMutation } = categoryApi;
+export const { useGetAllCategoriesQuery, useGetOneCategoryQuery, useDeleteCategoryMutation, useUpdateCategoryMutation } = categoryApi;

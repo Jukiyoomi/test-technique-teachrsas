@@ -3,7 +3,7 @@ import {H2} from "#root/components/ui/typography";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "#root/components/ui/tabs";
 import {CategoryProductsList} from "#root/pages/category-details/category-products-list";
 import {DeleteCategoryDialog} from "#root/pages/category-details/delete-category-dialog";
-import {toast} from "sonner";
+import {EditForm} from "#root/pages/category-details/edit-form";
 
 export function CategoryDetails() {
 	const route = getRouteApi('/container/category/$categoryId')
@@ -28,7 +28,12 @@ export function CategoryDetails() {
 					<CategoryProductsList products={data.products} />
 				</TabsContent>
 				<TabsContent value="edit" className="w-5/6">
-					<Paragraph>Mode édition. À venir.</Paragraph>
+					<EditForm
+						categoryId={data.id}
+						defaultValues={{
+							name: data.name,
+						}}
+					/>
 				</TabsContent>
 			</Tabs>
 		</div>
